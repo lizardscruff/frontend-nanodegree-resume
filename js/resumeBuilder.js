@@ -1,8 +1,11 @@
+
 //TODO: Put this in a bio object.
 var formattedName = HTMLheaderName.replace('%data%', 'Zachary Evan Butterfield');
 var formattedBioPic = HTMLbioPic.replace('%data%', 'images/moogle.jpg')
 $('#header').append(formattedName);
 $('#header').append(formattedBioPic);
+
+
 
 const   work = {
 			"jobs" : [
@@ -12,6 +15,13 @@ const   work = {
 					"location" : "Kasaoka, Okayama-ken, Japan",
 					"dates" : "January 2015 - Present",
 					"description" : "I teach English to school children."
+				},
+				{
+					"employer" : "AtoZ-Education",
+					"title" : "Assistant Language Teacher",
+					"location" : "Chino, Nagano-ken, Japan",
+					"dates" : "Unknown",
+					"description" : "I taught English to school children."
 				}
 			]
 		},
@@ -57,55 +67,87 @@ const   work = {
 				}
 			]
 		}
-//TODO: never use for in loops. Use the ES6 one maybe?
-for(job in work.jobs){
-	$('#workExperience').append(HTMLworkStart);
 
-	var formattedEmployer = HTMLworkEmployer.replace('%data%', work.jobs[job].employer);
-	var formattedTitle = HTMLworkTitle.replace('%data%', work.jobs[job].title);
-	var formattedEmployerTitle = formattedEmployer + formattedTitle;
-	var formattedDates = HTMLworkDates.replace('%data%', work.jobs[job].dates);
-	//var formattedLocation = HTMLworkLocation.replace('%data%', work.jobs[job].location);
-	var formattedDescription = HTMLworkDescription.replace('%data%', work.jobs[job].description);
+// Your code goes here! Let me help you get started
 
-	$('.work-entry:last').append(formattedEmployerTitle);
-	$('.work-entry:last').append(formattedDates);
-	//$('.work-entry:last').append(formattedLocation);
-	$('.work-entry:last').append(formattedDescription);
+function locationizer(work_obj) {
+    let locArray = [];
+    for(job in work_obj.jobs){
+        let newLoc = work_obj.jobs[job].location;
+        locArray.push(newLoc);
+    }
+    return locArray;
 }
 
+// Did locationizer() work? This line will tell you!
+console.log(locationizer(work));
 
-if (bio.skills.length > 0) {
-	$('#header').append(HTMLskillsStart);
 
-	let formattedSkill = HTMLskills.replace('%data%', bio.skills[0]);
-	$('#skills').append(formattedSkill);
-
-	formattedSkill = HTMLskills.replace('%data%', bio.skills[1]);
-	$('#skills').append(formattedSkill);
-
-	formattedSkill = HTMLskills.replace('%data%', bio.skills[2]);
-	$('#skills').append(formattedSkill);
-
-	formattedSkill = HTMLskills.replace('%data%', bio.skills[3]);
-	$('#skills').append(formattedSkill);
-
-	formattedSkill = HTMLskills.replace('%data%', bio.skills[4]);
-	$('#skills').append(formattedSkill);
-
-	formattedSkill = HTMLskills.replace('%data%', bio.skills[5]);
-	$('#skills').append(formattedSkill);
-
-	formattedSkill = HTMLskills.replace('%data%', bio.skills[6]);
-	$('#skills').append(formattedSkill);
-
-	formattedSkill = HTMLskills.replace('%data%', bio.skills[7]);
-	$('#skills').append(formattedSkill);
-} else {
-	console.log('No Skills!');
+/*
+function locationizer(work_obj) {
+    let locArray = [];
+    for(let place in work_obj){
+        locArray.push(work.jobs[location].place);
+    }
+    return locArray;
 }
 
+// Did locationizer() work? This line will tell you!
+console.log(locationizer(work));
+*/
 
+
+function displayWork(){
+	//TODO: never use for in loops. Use the ES6 one maybe?
+	for(job in work.jobs){
+		$('#workExperience').append(HTMLworkStart);
+
+		var formattedEmployer = HTMLworkEmployer.replace('%data%', work.jobs[job].employer);
+		var formattedTitle = HTMLworkTitle.replace('%data%', work.jobs[job].title);
+		var formattedEmployerTitle = formattedEmployer + formattedTitle;
+		var formattedDates = HTMLworkDates.replace('%data%', work.jobs[job].dates);
+		//var formattedLocation = HTMLworkLocation.replace('%data%', work.jobs[job].location);
+		var formattedDescription = HTMLworkDescription.replace('%data%', work.jobs[job].description);
+
+		$('.work-entry:last').append(formattedEmployerTitle);
+		$('.work-entry:last').append(formattedDates);
+		//$('.work-entry:last').append(formattedLocation);
+		$('.work-entry:last').append(formattedDescription);
+	}
+
+
+	if (bio.skills.length > 0) {
+		$('#header').append(HTMLskillsStart);
+
+		let formattedSkill = HTMLskills.replace('%data%', bio.skills[0]);
+		$('#skills').append(formattedSkill);
+
+		formattedSkill = HTMLskills.replace('%data%', bio.skills[1]);
+		$('#skills').append(formattedSkill);
+
+		formattedSkill = HTMLskills.replace('%data%', bio.skills[2]);
+		$('#skills').append(formattedSkill);
+
+		formattedSkill = HTMLskills.replace('%data%', bio.skills[3]);
+		$('#skills').append(formattedSkill);
+
+		formattedSkill = HTMLskills.replace('%data%', bio.skills[4]);
+		$('#skills').append(formattedSkill);
+
+		formattedSkill = HTMLskills.replace('%data%', bio.skills[5]);
+		$('#skills').append(formattedSkill);
+
+		formattedSkill = HTMLskills.replace('%data%', bio.skills[6]);
+		$('#skills').append(formattedSkill);
+
+		formattedSkill = HTMLskills.replace('%data%', bio.skills[7]);
+		$('#skills').append(formattedSkill);
+	} else {
+		console.log('No Skills!');
+	}
+
+}
+displayWork();
 
 
 
