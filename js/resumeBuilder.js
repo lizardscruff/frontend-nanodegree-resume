@@ -1,3 +1,21 @@
+//TODO: Make this shit clean, full of ES6 and add cool stuff like:
+// https://d3js.org/
+// Make the resume my own. 
+// Something about a Google Maps API Key?
+
+
+$('#mapDiv').append(googleMap);
+//$('#main').append(internationalizeButton);
+// Should be reworked to compensate for middle names and such
+function inName(nameString){
+  const nameArray = nameString.trim().split(' ');
+  const intlName = nameArray[0].charAt(0).toUpperCase()
+  				   + nameArray[0].slice(1)
+  				   + ' ' + nameArray[1].toUpperCase();
+  return intlName;
+}
+console.log(inName('zachary Butterfield'));
+
 
 //TODO: Put this in a bio object.
 var formattedName = HTMLheaderName.replace('%data%', 'Zachary Evan Butterfield');
@@ -68,7 +86,25 @@ const   work = {
 			]
 		}
 
-// Your code goes here! Let me help you get started
+
+//let's Encapsulate this shiz! Make displays for all object pieces.
+projects.display = function() {
+	for (project in projects.projects) {
+		$('#projects').append(HTMLprojectStart);
+
+		//Finish this
+		const formattedProjectTitle = HTMLprojectTitle.replace('%data%', projects.projects[project].title);
+		const formattedProjectDates = HTMLprojectDates.replace('%data%', projects.projects[project].dates);
+		const formattedProjectDescrip = HTMLprojectDescription.replace('%data%', projects.projects[project].description);
+		const formattedProjectImg = HTMLprojectImage.replace('%data%', projects.projects[project].images);
+
+		$('.project-entry:last').append(formattedProjectTitle);
+		$('.project-entry:last').append(formattedProjectDates);
+		$('.project-entry:last').append(formattedProjectDescrip);
+		$('.project-entry:last').append(formattedProjectImg);
+	}	
+}
+projects.display();
 
 function locationizer(work_obj) {
     let locArray = [];
@@ -148,6 +184,12 @@ function displayWork(){
 
 }
 displayWork();
+
+
+
+
+
+
 
 
 
