@@ -2,28 +2,7 @@
 // https://d3js.org/
 // Make the resume my own. 
 // Something about a Google Maps API Key?
-
-
-$('#mapDiv').append(googleMap);
-//$('#main').append(internationalizeButton);
-// Should be reworked to compensate for middle names and such
-function inName(nameString){
-  const nameArray = nameString.trim().split(' ');
-  const intlName = nameArray[0].charAt(0).toUpperCase()
-  				   + nameArray[0].slice(1)
-  				   + ' ' + nameArray[1].toUpperCase();
-  return intlName;
-}
-console.log(inName('zachary Butterfield'));
-
-
-//TODO: Put this in a bio object.
-var formattedName = HTMLheaderName.replace('%data%', 'Zachary Evan Butterfield');
-var formattedBioPic = HTMLbioPic.replace('%data%', 'images/moogle.jpg')
-$('#header').append(formattedName);
-$('#header').append(formattedBioPic);
-
-
+//$('#mapDiv').append(googleMap);
 
 const   work = {
 			"jobs" : [
@@ -64,7 +43,24 @@ const   work = {
 				"github" : "https://github.com/lizardscruff/",
 				"location" : "Satosho, Okayama-ken, Japan"
 			},
-			"skills" : ["HTML", "JavaScript", "Python", "CSS", "ES6", "jQuery", "JSON", "AJAX"]
+			"skills" : ["HTML", "JavaScript", "Python", "CSS", "ES6", "jQuery", "JSON", "AJAX"],
+			"display" : function() {
+				const 	formattedName = HTMLheaderName.replace('%data%', bio.name);
+						formattedBioPic = HTMLbioPic.replace('%data%', bio.biopic);
+						formattedRole = HTMLheaderRole.replace('%data%', bio.role);
+						//formattedSkill = HTMLskills.replace('%data%', bio.skills[0]);
+				$('#header').append(formattedName);
+				$('#header').append(formattedBioPic);
+				$('#header').append(formattedRole);
+				if (bio.skills.length > 0) {
+					$('#header').append(HTMLskillsStart);
+					// TODO: Loop through all the skills and append them so that they show up
+					// on their own bulletpoints.
+					//bio.skills.forEach
+					$('#header').append(formattedSkill);
+				}
+				
+			}
 		},
 		education = {
 			"schools": [
@@ -86,7 +82,6 @@ const   work = {
 			]
 		}
 
-
 //let's Encapsulate this shiz! Make displays for all object pieces.
 projects.display = function() {
 	for (project in projects.projects) {
@@ -105,7 +100,9 @@ projects.display = function() {
 	}	
 }
 projects.display();
+bio.display();
 
+/*
 function locationizer(work_obj) {
     let locArray = [];
     for(job in work_obj.jobs){
@@ -117,20 +114,6 @@ function locationizer(work_obj) {
 
 // Did locationizer() work? This line will tell you!
 console.log(locationizer(work));
-
-
-/*
-function locationizer(work_obj) {
-    let locArray = [];
-    for(let place in work_obj){
-        locArray.push(work.jobs[location].place);
-    }
-    return locArray;
-}
-
-// Did locationizer() work? This line will tell you!
-console.log(locationizer(work));
-*/
 
 
 function displayWork(){
@@ -186,7 +169,17 @@ function displayWork(){
 displayWork();
 
 
-
+//$('#main').append(internationalizeButton);
+// Should be reworked to compensate for middle names and such
+function inName(nameString){
+  const nameArray = nameString.trim().split(' ');
+  const intlName = nameArray[0].charAt(0).toUpperCase()
+  				   + nameArray[0].slice(1)
+  				   + ' ' + nameArray[1].toUpperCase();
+  return intlName;
+}
+console.log(inName('zachary Butterfield'));
+*/
 
 
 

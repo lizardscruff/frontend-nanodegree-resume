@@ -114,8 +114,9 @@ function initializeMap() {
   For the map to be displayed, the googleMap var must be
   appended to #mapDiv in resumeBuilder.js.
   */
+/*
   map = new google.maps.Map(document.querySelector('#map'), mapOptions);
-
+*/
 
   /*
   locationFinder() returns an array of every location string from the JSONs
@@ -147,6 +148,7 @@ function initializeMap() {
 
     return locations;
   }
+
 
   /*
   createMapMarker(placeData) reads Google Places search results to create map pins.
@@ -237,7 +239,7 @@ function initializeMap() {
 /*
 Uncomment the code below when you're ready to implement a Google Map!
 */
-
+/*
 // Calls the initializeMap() function when the page loads
 window.addEventListener('load', initializeMap);
 
@@ -247,3 +249,4 @@ window.addEventListener('resize', function(e) {
   //Make sure the map bounds get updated on page resize
   map.fitBounds(mapBounds);
 });
+*/
