@@ -33,7 +33,7 @@ const   work = {
 			]
 		},
 		bio = {
-			"name" : "Zachary Evan Butterfield",
+			"name" : "Zachary BUTTERFIELD",
 			"role" : "Freelance Front-End Developer",
 			"welcomeMessage" : "Hey there! I'm Zachary Evan Butterfield. Nice to meet you!",
 			"biopic" : "images/moogle.jpg",
@@ -43,21 +43,36 @@ const   work = {
 				"github" : "https://github.com/lizardscruff/",
 				"location" : "Satosho, Okayama-ken, Japan"
 			},
-			"skills" : ["HTML", "JavaScript", "Python", "CSS", "ES6", "jQuery", "JSON", "AJAX"],
+			"skills" : ["HTML", "JavaScript", "Python", "CSS", "ES6", "jQuery", "JSON", "AJAX", "Doing shit"],
 			"display" : function() {
 				const 	formattedName = HTMLheaderName.replace('%data%', bio.name);
-						formattedBioPic = HTMLbioPic.replace('%data%', bio.biopic);
 						formattedRole = HTMLheaderRole.replace('%data%', bio.role);
-						//formattedSkill = HTMLskills.replace('%data%', bio.skills[0]);
+						formattedBioPic = HTMLbioPic.replace('%data%', bio.biopic);
+						formattedMsg = HTMLwelcomeMsg.replace('%data%', bio.welcomeMessage);
+						formattedMobile = HTMLmobile.replace('%data%', bio.contacts.mobile);
+						formattedEmail = HTMLemail.replace('%data%', bio.contacts.email);
+						formattedGithub = HTMLgithub.replace('%data%', bio.contacts.github);
+						formattedLocation = HTMLlocation.replace('%data%', bio.contacts.location);						
+						
 				$('#header').append(formattedName);
-				$('#header').append(formattedBioPic);
 				$('#header').append(formattedRole);
+				$('#header').append(HTMLcontactStart);
+				$('#contact').append(formattedMobile);
+				$('#contact').append(formattedEmail);
+				$('#contact').append(formattedGithub);
+				$('#contact').append(formattedLocation);
+				$('#header').append(formattedBioPic);
+				$('#header').append(formattedMsg);
+				$('#header').append(HTMLskillsStart);
+				$('#footerContacts').append(formattedMobile);
+				$('#footerContacts').append(formattedEmail);
+				$('#footerContacts').append(formattedGithub);
+				$('#footerContacts').append(formattedLocation);
+
 				if (bio.skills.length > 0) {
-					$('#header').append(HTMLskillsStart);
-					// TODO: Loop through all the skills and append them so that they show up
-					// on their own bulletpoints.
-					//bio.skills.forEach
-					$('#header').append(formattedSkill);
+					bio.skills.forEach(function(skill) {
+						$('#skills').append(HTMLskills.replace('%data%', skill));
+					});
 				}
 				
 			}
@@ -97,7 +112,10 @@ projects.display = function() {
 		$('.project-entry:last').append(formattedProjectDates);
 		$('.project-entry:last').append(formattedProjectDescrip);
 		$('.project-entry:last').append(formattedProjectImg);
-	}	
+	}
+	//Probably need to loop through the projects and each time adding an ID to the next 
+	// one like project1, project2, etc.
+	//$('.project-entry').first() or find?.replace('#', 'https://lizardscruff.github.io/memoryGame/');
 }
 projects.display();
 bio.display();
