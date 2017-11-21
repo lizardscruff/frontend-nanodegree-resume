@@ -2,28 +2,7 @@
 // https://d3js.org/
 // Make the resume my own. 
 // Something about a Google Maps API Key?
-
-
-$('#mapDiv').append(googleMap);
-//$('#main').append(internationalizeButton);
-// Should be reworked to compensate for middle names and such
-function inName(nameString){
-  const nameArray = nameString.trim().split(' ');
-  const intlName = nameArray[0].charAt(0).toUpperCase()
-  				   + nameArray[0].slice(1)
-  				   + ' ' + nameArray[1].toUpperCase();
-  return intlName;
-}
-console.log(inName('zachary Butterfield'));
-
-
-//TODO: Put this in a bio object.
-var formattedName = HTMLheaderName.replace('%data%', 'Zachary Evan Butterfield');
-var formattedBioPic = HTMLbioPic.replace('%data%', 'images/moogle.jpg')
-$('#header').append(formattedName);
-$('#header').append(formattedBioPic);
-
-
+//$('#mapDiv').append(googleMap);
 
 const   work = {
 			"jobs" : [
@@ -54,7 +33,7 @@ const   work = {
 			]
 		},
 		bio = {
-			"name" : "Zachary Evan Butterfield",
+			"name" : "Zachary BUTTERFIELD",
 			"role" : "Freelance Front-End Developer",
 			"welcomeMessage" : "Hey there! I'm Zachary Evan Butterfield. Nice to meet you!",
 			"biopic" : "images/moogle.jpg",
@@ -64,7 +43,39 @@ const   work = {
 				"github" : "https://github.com/lizardscruff/",
 				"location" : "Satosho, Okayama-ken, Japan"
 			},
-			"skills" : ["HTML", "JavaScript", "Python", "CSS", "ES6", "jQuery", "JSON", "AJAX"]
+			"skills" : ["HTML", "JavaScript", "Python", "CSS", "ES6", "jQuery", "JSON", "AJAX", "Doing shit"],
+			"display" : function() {
+				const 	formattedName = HTMLheaderName.replace('%data%', bio.name);
+						formattedRole = HTMLheaderRole.replace('%data%', bio.role);
+						formattedBioPic = HTMLbioPic.replace('%data%', bio.biopic);
+						formattedMsg = HTMLwelcomeMsg.replace('%data%', bio.welcomeMessage);
+						formattedMobile = HTMLmobile.replace('%data%', bio.contacts.mobile);
+						formattedEmail = HTMLemail.replace('%data%', bio.contacts.email);
+						formattedGithub = HTMLgithub.replace('%data%', bio.contacts.github);
+						formattedLocation = HTMLlocation.replace('%data%', bio.contacts.location);						
+						
+				$('#header').append(formattedName);
+				$('#header').append(formattedRole);
+				$('#header').append(HTMLcontactStart);
+				$('#contact').append(formattedMobile);
+				$('#contact').append(formattedEmail);
+				$('#contact').append(formattedGithub);
+				$('#contact').append(formattedLocation);
+				$('#header').append(formattedBioPic);
+				$('#header').append(formattedMsg);
+				$('#header').append(HTMLskillsStart);
+				$('#footerContacts').append(formattedMobile);
+				$('#footerContacts').append(formattedEmail);
+				$('#footerContacts').append(formattedGithub);
+				$('#footerContacts').append(formattedLocation);
+
+				if (bio.skills.length > 0) {
+					bio.skills.forEach(function(skill) {
+						$('#skills').append(HTMLskills.replace('%data%', skill));
+					});
+				}
+				
+			}
 		},
 		education = {
 			"schools": [
@@ -86,7 +97,6 @@ const   work = {
 			]
 		}
 
-
 //let's Encapsulate this shiz! Make displays for all object pieces.
 projects.display = function() {
 	for (project in projects.projects) {
@@ -102,10 +112,15 @@ projects.display = function() {
 		$('.project-entry:last').append(formattedProjectDates);
 		$('.project-entry:last').append(formattedProjectDescrip);
 		$('.project-entry:last').append(formattedProjectImg);
-	}	
+	}
+	//Probably need to loop through the projects and each time adding an ID to the next 
+	// one like project1, project2, etc.
+	//$('.project-entry').first() or find?.replace('#', 'https://lizardscruff.github.io/memoryGame/');
 }
 projects.display();
+bio.display();
 
+/*
 function locationizer(work_obj) {
     let locArray = [];
     for(job in work_obj.jobs){
@@ -117,20 +132,6 @@ function locationizer(work_obj) {
 
 // Did locationizer() work? This line will tell you!
 console.log(locationizer(work));
-
-
-/*
-function locationizer(work_obj) {
-    let locArray = [];
-    for(let place in work_obj){
-        locArray.push(work.jobs[location].place);
-    }
-    return locArray;
-}
-
-// Did locationizer() work? This line will tell you!
-console.log(locationizer(work));
-*/
 
 
 function displayWork(){
@@ -186,7 +187,17 @@ function displayWork(){
 displayWork();
 
 
-
+//$('#main').append(internationalizeButton);
+// Should be reworked to compensate for middle names and such
+function inName(nameString){
+  const nameArray = nameString.trim().split(' ');
+  const intlName = nameArray[0].charAt(0).toUpperCase()
+  				   + nameArray[0].slice(1)
+  				   + ' ' + nameArray[1].toUpperCase();
+  return intlName;
+}
+console.log(inName('zachary Butterfield'));
+*/
 
 
 
