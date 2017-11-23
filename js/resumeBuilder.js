@@ -20,22 +20,82 @@ const   work = {
 					"dates" : "Unknown",
 					"description" : "I taught English to school children."
 				}
-			]
+			],
+			// TODO: Something funky happening here. Tags get closed automatically so I had to create
+			// a work around
+			"display" : function() {
+				$('#workExperience').append(HTMLworkStart);
+
+				for (job in work.jobs) {
+
+					const 	formattedEmployerTitle =
+								HTMLworkTitle.replace('%data%', work
+									.jobs[job].title);
+									
+							formattedEmployerLoc =
+								HTMLworkLocation.replace('%data%', work
+									.jobs[job].location);
+								
+							formattedEmployerDates =
+								HTMLworkDates.replace('%data%', work
+									.jobs[job].dates);
+							formattedEmployerDescrip =
+								HTMLworkDescription.replace('%data%', work
+									.jobs[job].description);
+									
+					$('.work-entry').append(HTMLtitleStart);
+					$('.work-title').append(work.jobs[job].employer)
+						.append(formattedEmployerTitle);
+					$('.work-entry').append(formattedEmployerLoc)
+						.append(formattedEmployerDates)
+						.append(formattedEmployerDescrip);
+				}
+			}
 		},
 		projects = {
 			"projects" : [
 				{
 					"title" : "memoryGame",
 					"dates" : "October 2017",
-					"description" : "A matching game created with JavaScript and jQuery.",
+					"description" : "A matching game created with JavaScript"
+									+ " and jQuery.",
 					"images" : ["images/memory.jpg"]
 				}
-			]
+			],
+			"display" : function() {
+			// TODO: For when adding multiple projects.
+			//Probably need to loop through the projects and each time adding 
+			//an ID to the next one like project1, project2, etc.
+			//$('.project-entry').first() or find?
+			//.replace('#', 'https://lizardscruff.github.io/memoryGame/');
+				for (project in projects.projects) {
+					$('#projects').append(HTMLprojectStart);
+				
+					const 	formattedProjectTitle = 
+								HTMLprojectTitle.replace('%data%', projects
+								.projects[project].title);
+							formattedProjectDates = 
+								HTMLprojectDates.replace('%data%', projects
+								.projects[project].dates);
+						 	formattedProjectDescrip = 
+						 		HTMLprojectDescription.replace('%data%', projects
+						 		.projects[project].description);
+						 	formattedProjectImg = 
+						 		HTMLprojectImage.replace('%data%', projects
+						 		.projects[project].images);	
+
+					$('.project-entry:last').append(formattedProjectTitle)
+						.append(formattedProjectDates)
+						.append(formattedProjectDescrip)
+						.append(formattedProjectImg);
+				}
+			}
 		},
 		bio = {
 			"name" : "Zachary BUTTERFIELD",
 			"role" : "Freelance Front-End Developer",
-			"welcomeMessage" : "Hey there! I'm Zachary Evan Butterfield. Nice to meet you!",
+			"welcomeMessage" : "Hey there! I'm Zachary Evan Butterfield." 
+							   +" Nice to meet you!",
 			"biopic" : "images/moogle.jpg",
 			"contacts" : {
 				"mobile" : "999-999-9999",
@@ -43,35 +103,45 @@ const   work = {
 				"github" : "https://github.com/lizardscruff/",
 				"location" : "Satosho, Okayama-ken, Japan"
 			},
-			"skills" : ["HTML", "JavaScript", "Python", "CSS", "ES6", "jQuery", "JSON", "AJAX", "Doing shit"],
+			"skills" : ["HTML", "JavaScript", "Python", "CSS", "ES6", 
+					    "jQuery", "JSON", "AJAX", "Doin' shit propah!"],
 			"display" : function() {
-				const 	formattedName = HTMLheaderName.replace('%data%', bio.name);
-						formattedRole = HTMLheaderRole.replace('%data%', bio.role);
-						formattedBioPic = HTMLbioPic.replace('%data%', bio.biopic);
-						formattedMsg = HTMLwelcomeMsg.replace('%data%', bio.welcomeMessage);
-						formattedMobile = HTMLmobile.replace('%data%', bio.contacts.mobile);
-						formattedEmail = HTMLemail.replace('%data%', bio.contacts.email);
-						formattedGithub = HTMLgithub.replace('%data%', bio.contacts.github);
-						formattedLocation = HTMLlocation.replace('%data%', bio.contacts.location);						
+				const 	formattedName = 
+							HTMLheaderName.replace('%data%', bio.name);
+						formattedRole = 
+							HTMLheaderRole.replace('%data%', bio.role);
+						formattedBioPic = 
+							HTMLbioPic.replace('%data%', bio.biopic);
+						formattedMsg = 
+							HTMLwelcomeMsg
+							.replace('%data%', bio.welcomeMessage);
+						formattedMobile = 
+							HTMLmobile.replace('%data%', bio.contacts.mobile);
+						formattedEmail = 
+							HTMLemail.replace('%data%', bio.contacts.email);
+						formattedGithub = 
+							HTMLgithub.replace('%data%', bio.contacts.github);
+						formattedLocation = 
+							HTMLlocation
+							.replace('%data%', bio.contacts.location);						
 						
-				$('#header').append(formattedName);
-				$('#header').append(formattedRole);
-				$('#header').append(HTMLcontactStart);
-				$('#contact').append(formattedMobile);
-				$('#contact').append(formattedEmail);
-				$('#contact').append(formattedGithub);
-				$('#contact').append(formattedLocation);
-				$('#header').append(formattedBioPic);
-				$('#header').append(formattedMsg);
-				$('#header').append(HTMLskillsStart);
-				$('#footerContacts').append(formattedMobile);
-				$('#footerContacts').append(formattedEmail);
-				$('#footerContacts').append(formattedGithub);
-				$('#footerContacts').append(formattedLocation);
+				$('#header').append(formattedName).append(formattedRole)
+					.append(HTMLcontactStart);
+				$('#contact').append(formattedMobile)
+					.append(formattedEmail)
+					.append(formattedGithub)
+					.append(formattedLocation);
+				$('#header').append(formattedBioPic)
+					.append(formattedMsg)
+					.append(HTMLskillsStart);
+				$('#footerContacts').append(formattedMobile)
+					.append(formattedEmail).append(formattedGithub)
+					.append(formattedLocation);
 
 				if (bio.skills.length > 0) {
 					bio.skills.forEach(function(skill) {
-						$('#skills').append(HTMLskills.replace('%data%', skill));
+						$('#skills')
+							.append(HTMLskills.replace('%data%', skill));
 					});
 				}
 				
@@ -94,31 +164,14 @@ const   work = {
 					"dates" : "May - October 2017",
 					"url" : "https://www.udacity.com/"
 				}
-			]
+			],
+			"display" : function() {
+
+			}
 		}
-
-//let's Encapsulate this shiz! Make displays for all object pieces.
-projects.display = function() {
-	for (project in projects.projects) {
-		$('#projects').append(HTMLprojectStart);
-
-		//Finish this
-		const formattedProjectTitle = HTMLprojectTitle.replace('%data%', projects.projects[project].title);
-		const formattedProjectDates = HTMLprojectDates.replace('%data%', projects.projects[project].dates);
-		const formattedProjectDescrip = HTMLprojectDescription.replace('%data%', projects.projects[project].description);
-		const formattedProjectImg = HTMLprojectImage.replace('%data%', projects.projects[project].images);
-
-		$('.project-entry:last').append(formattedProjectTitle);
-		$('.project-entry:last').append(formattedProjectDates);
-		$('.project-entry:last').append(formattedProjectDescrip);
-		$('.project-entry:last').append(formattedProjectImg);
-	}
-	//Probably need to loop through the projects and each time adding an ID to the next 
-	// one like project1, project2, etc.
-	//$('.project-entry').first() or find?.replace('#', 'https://lizardscruff.github.io/memoryGame/');
-}
 projects.display();
 bio.display();
+work.display();
 
 /*
 function locationizer(work_obj) {
