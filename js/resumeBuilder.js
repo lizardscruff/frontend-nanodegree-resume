@@ -21,14 +21,15 @@ const   work = {
 					"description" : "I taught English to school children."
 				}
 			],
-			// TODO: Something funky happening here. Tags get closed automatically so I had to create
-			// a work around
+			//Tags get closed automatically so I had to create a work around.
 			"display" : function() {
-				$('#workExperience').append(HTMLworkStart);
-
 				for (job in work.jobs) {
+					$('#workExperience').append(HTMLworkStart);
+					$('.work-entry:last').append(HTMLtitleStart);
 
-					const 	formattedEmployerTitle =
+					const 	formattedEmployer = work.jobs[job].employer;
+
+							formattedEmployerTitle =
 								HTMLworkTitle.replace('%data%', work
 									.jobs[job].title);
 									
@@ -43,10 +44,9 @@ const   work = {
 								HTMLworkDescription.replace('%data%', work
 									.jobs[job].description);
 									
-					$('.work-entry').append(HTMLtitleStart);
-					$('.work-title').append(work.jobs[job].employer)
+					$('.work-title:last').append(formattedEmployer)
 						.append(formattedEmployerTitle);
-					$('.work-entry').append(formattedEmployerLoc)
+					$('.work-entry:last').append(formattedEmployerLoc)
 						.append(formattedEmployerDates)
 						.append(formattedEmployerDescrip);
 				}
