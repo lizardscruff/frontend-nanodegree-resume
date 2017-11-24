@@ -2,7 +2,6 @@
 // https://d3js.org/
 // Make the resume my own. 
 // Something about a Google Maps API Key?
-//$('#mapDiv').append(googleMap);
 
 const   work = {
 			"jobs" : [
@@ -214,103 +213,25 @@ const   work = {
 							formattedOnlineURL =
 								HTMLonlineURL.replace('%data%',
 								education.onlineCourses[course].url);
-					$('#education:last').append(HTMLonlineStart);
-					$('.online-entry').append(HTMLonlineClasses);
+					$('#education:last').append(HTMLonlineClasses)
+						.append(HTMLonlineStart);
+					$('.online-entry:last')
+						.append(formattedOnlineTitle);
+					$('.onlineTitle:last').append(formattedOnlineSchool);
+					$('.online-entry:last').append(formattedOnlineDates)
+							.append(formattedOnlineURL);
 				}
 			}
+		},
+		workedLived = {
+			"display" : function() {
+				$('#mapDiv').append(googleMap);
+			}
+
 		}
 projects.display();
 bio.display();
 work.display();
 education.display();
 education.displayOnline();
-/*
-function locationizer(work_obj) {
-    let locArray = [];
-    for(job in work_obj.jobs){
-        let newLoc = work_obj.jobs[job].location;
-        locArray.push(newLoc);
-    }
-    return locArray;
-}
-
-// Did locationizer() work? This line will tell you!
-console.log(locationizer(work));
-
-
-function displayWork(){
-	//TODO: never use for in loops. Use the ES6 one maybe?
-	for(job in work.jobs){
-		$('#workExperience').append(HTMLworkStart);
-
-		var formattedEmployer = HTMLworkEmployer
-		.replace('%data%', work.jobs[job].employer);
-		var formattedTitle = HTMLworkTitle
-		.replace('%data%', work.jobs[job].title);
-		var formattedEmployerTitle = formattedEmployer + formattedTitle;
-		var formattedDates = HTMLworkDates
-		.replace('%data%', work.jobs[job].dates);
-		//var formattedLocation = HTMLworkLocation
-		.replace('%data%', work.jobs[job].location);
-		var formattedDescription = HTMLworkDescription
-		.replace('%data%', work.jobs[job].description);
-
-		$('.work-entry:last').append(formattedEmployerTitle);
-		$('.work-entry:last').append(formattedDates);
-		//$('.work-entry:last').append(formattedLocation);
-		$('.work-entry:last').append(formattedDescription);
-	}
-
-
-	if (bio.skills.length > 0) {
-		$('#header').append(HTMLskillsStart);
-
-		let formattedSkill = HTMLskills.replace('%data%', bio.skills[0]);
-		$('#skills').append(formattedSkill);
-
-		formattedSkill = HTMLskills.replace('%data%', bio.skills[1]);
-		$('#skills').append(formattedSkill);
-
-		formattedSkill = HTMLskills.replace('%data%', bio.skills[2]);
-		$('#skills').append(formattedSkill);
-
-		formattedSkill = HTMLskills.replace('%data%', bio.skills[3]);
-		$('#skills').append(formattedSkill);
-
-		formattedSkill = HTMLskills.replace('%data%', bio.skills[4]);
-		$('#skills').append(formattedSkill);
-
-		formattedSkill = HTMLskills.replace('%data%', bio.skills[5]);
-		$('#skills').append(formattedSkill);
-
-		formattedSkill = HTMLskills.replace('%data%', bio.skills[6]);
-		$('#skills').append(formattedSkill);
-
-		formattedSkill = HTMLskills.replace('%data%', bio.skills[7]);
-		$('#skills').append(formattedSkill);
-	} else {
-		console.log('No Skills!');
-	}
-
-}
-displayWork();
-
-
-//$('#main').append(internationalizeButton);
-// Should be reworked to compensate for middle names and such
-function inName(nameString){
-  const nameArray = nameString.trim().split(' ');
-  const intlName = nameArray[0].charAt(0).toUpperCase()
-  				   + nameArray[0].slice(1)
-  				   + ' ' + nameArray[1].toUpperCase();
-  return intlName;
-}
-console.log(inName('zachary Butterfield'));
-*/
-
-
-
-
-
-
-
+workedLived.display();
