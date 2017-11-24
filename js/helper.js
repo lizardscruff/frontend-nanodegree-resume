@@ -45,17 +45,19 @@ var HTMLprojectDescription = '<p><br>%data%</p>';
 var HTMLprojectImage = '<img src="%data%">';
 
 var HTMLschoolStart = '<div class="education-entry"></div>';
-var HTMLschoolName = '<a href="#">%data%';
-var HTMLschoolDegree = ' -- %data%</a>';
+const HTMLschoolHead = '<a href="#" class="school-header"></a>';
+var HTMLschoolName = '%data%';
+var HTMLschoolDegree = ' -- %data%';
 var HTMLschoolDates = '<div class="date-text">%data%</div>';
 var HTMLschoolLocation = '<div class="location-text">%data%</div>';
 var HTMLschoolMajor = '<em><br>Major: %data%</em>';
 
-var HTMLonlineClasses = '<h3>Online Classes</h3>';
-var HTMLonlineTitle = '<a href="#">%data%';
-var HTMLonlineSchool = ' - %data%</a>';
-var HTMLonlineDates = '<div class="date-text">%data%</div>';
-var HTMLonlineURL = '<br><a href="#">%data%</a>';
+const HTMLonlineStart = '<div class="online-entry"></div>';
+      HTMLonlineClasses = '<h3>Online Classes</h3>';
+      HTMLonlineTitle = '<a href="#">%data%</a>';
+      HTMLonlineSchool =  '- %data%';
+      HTMLonlineDates = '<div class="date-text">%data%</div>';
+      HTMLonlineURL = '<br><a href="#">%data%</a>';
 
 var internationalizeButton = '<button>Internationalize</button>';
 var googleMap = '<div id="map"></div>';
