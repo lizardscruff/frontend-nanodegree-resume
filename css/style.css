@@ -14,6 +14,32 @@ h6 {
   font-family: "Roboto", sans-serif;
 }
 
+/* Recommended to put a max width on these items for Responsive Design */
+img, 
+object, 
+embed, 
+video {
+  max-width: 100%;
+}
+
+/* TODO: Make sure tap targets like links have min-width and height
+         of 48px
+
+         A useful way to do this is by selecting the a tags and adding 
+         a padding of 1.5 or whatever you want ems.
+         It will add a space that is 1.5x the font size.
+         It's relative as opposed to px which is not.*/
+         
+/* TODO: Design a new Resume starting from the smallest screen device
+         for example iphone4 or whatever is smallest and then to 
+         larger devices like bigger phones and tablets, to finally
+         seeing if the desing needs tweaking to show on a laptop or
+         computer screen 
+
+         Performance Matters!!!*/
+
+
+
 .clear-fix {
   overflow: auto;
 }
